@@ -1,0 +1,9 @@
+.board-title, .new-form {
+	margin-left: 10%;
+}
+
+.list-box {
+	display: inline-block;
+	margin: 0 10% 0 10%;
+}
+
