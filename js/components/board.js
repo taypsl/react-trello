@@ -1,7 +1,7 @@
 require('babel-polyfill');
 
 import React from 'react';
-import CardList from './list';
+import ListComponent from './list-container';
 
 export default class Board extends React.Component {
     constructor(props) {
@@ -12,9 +12,7 @@ export default class Board extends React.Component {
 		return (
 	        <div className="board-box">
 	            <h1 className="board-title">{this.props.boardTitle}</h1>
-	            <CardList />
-	            <CardList />
-	            <CardList />
+	            <ListComponent />
 	        </div>
 	    );
 	}
