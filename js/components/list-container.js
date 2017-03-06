@@ -22,11 +22,13 @@ export default class ListComponent extends React.Component {
     	console.log('I am sensing a disturbance in the force.')
     }
 
-    onAddSubmit() {
+    onAddSubmit(e) {
+    	e.preventDefault();
     	let input = this.state.text;
+    	let cardArray = this.state.cards
     	this.setState({
-    		cards: this.state.cards.push(input) //currently replacing not adding to array
-    	})
+	      cards:  this.state.cards.concat(this.state.text)
+	    })
     	console.log('clicked!')
     	console.log(this.state.cards)
     }
@@ -38,12 +40,13 @@ export default class ListComponent extends React.Component {
 
 	        <div className="list-box">
 	            <h2>{this.props.listTitle}</h2>
-	            <Card />
-	            <Card />
+	            {this.state.cards.map(function(card) {
+	            	return <Card title={card} />
+	            })}
 	            <Card />
 				<form className="new-form">
 	           		<input type="text" placeholder="type something!" onChange={this.onAddInputChanged} />
-	           		<Submit type="submit" onClick={() => this.onAddSubmit(this.props.text)} />
+	           		<Submit type="submit" onClick={this.onAddSubmit} />
 	       		</form>
 	        </div>
 
