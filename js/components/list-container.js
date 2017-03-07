@@ -41,9 +41,8 @@ export default class ListComponent extends React.Component {
 	        <div className="list-box">
 	            <h2>{this.props.listTitle}</h2>
 	            {this.state.cards.map(function(card) {
-	            	return <Card title={card} />
+	            	return <Card text={card} />
 	            })}
-	            <Card />
 				<form className="new-form">
 	           		<input type="text" placeholder="type something!" onChange={this.onAddInputChanged} />
 	           		<Submit type="submit" onClick={this.onAddSubmit} />
