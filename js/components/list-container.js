@@ -2,6 +2,7 @@ require('babel-polyfill');
 
 import React from 'react';
 import Card from './card';
+import List from './list'
 
 export default class ListComponent extends React.Component {
     constructor(props) {
@@ -19,42 +20,36 @@ export default class ListComponent extends React.Component {
     	this.setState({
     		text: text
     	})
-    	console.log('I am sensing a disturbance in the force.')
     }
 
     onAddSubmit(e) {
     	e.preventDefault();
     	let input = this.state.text;
-    	let cardArray = this.state.cards
-    	this.setState({
-	      cards:  this.state.cards.concat(this.state.text)
+    	let cardArray = this.state.cards;
+    	var cards = cardArray.concat(input);
+        this.setState({
+	      cards:  cards,
+          text: ''
 	    })
-    	console.log('clicked!')
-    	console.log(this.state.cards)
     }
 
 	render() {
 	    return (
-
-	    	// <ListComponent />
-
 	        <div className="list-box">
-	            <h2>{this.props.listTitle}</h2>
-	            {this.state.cards.map(function(card) {
-	            	return <Card text={card} />
-	            })}
+                <List 
+                    title={this.props.title}
+                    cards={this.state.cards}
+                    onAddInputChanged={this.onAddInputChanged}
+                    onAddSubmit={this.onAddSubmit}
+                />
 				<form className="new-form">
-	           		<input type="text" placeholder="type something!" onChange={this.onAddInputChanged} />
+	           		<input type="text" placeholder="type something!" value={this.state.text} onChange={this.onAddInputChanged} />
 	           		<Submit type="submit" onClick={this.onAddSubmit} />
 	       		</form>
 	        </div>
 
 	    );
     }
-}
-
-ListComponent.defaultProps = {
-	listTitle: "default list title"
 }
 
 export function Submit(props) {
